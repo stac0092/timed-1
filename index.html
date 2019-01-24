@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Self-Removing Messages</title>
+    <style>
+        html{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        .msg{
+            width: 80%;
+            height: 3rem;
+            font-size: 1.5rem;
+            line-height: 3rem;
+            text-align: center;
+            background-color: hsl(204, 50%, 60%);
+            color: #333;
+            box-shadow: 2px 2px 2px #333;
+            transform: translateY(-200%);
+            opacity: 0;
+            transition: all 0.6s linear;
+        }
+        .visible{
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="msg"></div>
+    <main>
+        <h1>This is the page title</h1>
+        <p>Go ahead. Click on the page. Get today's message. It will remove itself after a few seconds.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla eligendi natus voluptatibus provident sit beatae aspernatur dolorem temporibus praesentium, dolores quidem eaque iste tenetur blanditiis explicabo vitae officia distinctio perspiciatis.</p>
+        <p>Quis esse voluptatem molestias atque exercitationem a? Debitis suscipit sed nihil aut sapiente harum praesentium consectetur veritatis blanditiis eveniet quis ducimus recusandae, unde iure saepe quae modi, nisi id magni.</p>
+        <p>Eum minima culpa modi earum deleniti maxime molestiae dolores natus dicta facere libero ipsum laudantium asperiores unde, quam corrupti dolor excepturi nobis illum ipsa labore ullam cupiditate ipsam! Omnis, asperiores?</p>
+        <p>Deleniti cumque minima totam veritatis possimus! Ipsa neque praesentium iusto nostrum, voluptate sit rerum harum, dicta provident ratione, aliquam esse accusamus. Aperiam incidunt blanditiis nostrum, pariatur voluptates neque inventore delectus.</p>
+    </main>
+    <script>
+        let messages = [
+            `Hey. Thanks for sharing your password.`,
+            `Your account has been flagged for unusual behaviour.`,
+            `You're gonna need a bigger boat.`,
+            `Look at me. Seriously. Look at me or I will go away.`,
+            `This is not the message you were expecting. The cake is a lie.`
+        ];
+
+        
+let addMessage = (ev)=>{
+        ev.preventDefault();
+
+        let randomMessages = messages[Math.floor(Math.random() * messages.length)];
+        console.log(randomMessages);
+
+            //Complete this function
+            //it needs to randomly select one of the messages from the Array
+            //then set that random message as the textContent for the div.msg
+            //then add the CSS class that will animate it on to the page
+            //next set a timer to make the message animate itself off the page after 3 seconds.
+            //animate it by removing that same CSS class
+
+            document.getElementById("msg").innerHTML = randomMessages
+
+            let d = setInterval(function() {
+
+            randomMessages;
+                }, 500);
+
+                setTimeout(function() {
+                clearInterval(d);
+                    }, 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', ()=>{
+            document.querySelector('main').addEventListener('click', addMessage);
+        });
+    </script>
+</body>
+
